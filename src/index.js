@@ -9,7 +9,7 @@ fetch('https://api.weatherapi.com/v1/current.json?key=3a42f2ba01104ec98ac2075723
         console.log(r.location.localtime);
     })
     .catch(function(err) {
-        
+        console.log(err);
     });
 
 function createForm() {
@@ -24,11 +24,20 @@ function createForm() {
     let btn = document.createElement("button");
     btn.innerHTML = "Search";
     btn.setAttribute("type", "submit");
+    btn.onclick = function test(e) {
+        e.preventDefault();
+        getCity();  
+    }
 
     formArea.append(formInput);
     formArea.append(btn);
 
     document.getElementById("content").appendChild(formArea);
+}
+
+function getCity() {
+    let city = formInput.value;
+    console.log(city);
 }
 
 createForm();
