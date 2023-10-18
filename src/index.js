@@ -1,16 +1,26 @@
-import { create } from 'lodash';
 import './style.css';
 
-fetch('https://api.weatherapi.com/v1/current.json?key=3a42f2ba01104ec98ac20757231610&q=sydney')
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(r) {
-        console.log(r.location.localtime);
-    })
-    .catch(function(err) {
-        console.log(err);
+async function getWeather(city) {
+    let response = await fetch('https://api.weatherapi.com/v1/current.json?key=3a42f2ba01104ec98ac20757231610&q=sydney', {
+        mode: 'cors'
     });
+
+    let weather = await response.json();
+    
+    let feelsLike = weather.current.feelslike_c;
+    console.log(feelsLike);
+
+    let wind = weather.current.wind_kph;
+    console.log(wind);
+
+    let humidity = weather.current.humidity;
+    console.log(humidity);
+
+    let time = weather.location.localtime;
+    console.log(time);
+}
+
+getWeather();
 
 function createForm() {
     let formArea = document.createElement("div");
