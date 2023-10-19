@@ -1,7 +1,7 @@
 import './style.css';
 
 async function getWeather(city) {
-    let response = await fetch('https://api.weatherapi.com/v1/current.json?key=3a42f2ba01104ec98ac20757231610&q=sydney', {
+    let response = await fetch('https://api.weatherapi.com/v1/current.json?key=3a42f2ba01104ec98ac20757231610&q=' + city, {
         mode: 'cors'
     });
 
@@ -20,9 +20,46 @@ async function getWeather(city) {
     console.log(time);
 }
 
-getWeather();
+function loadHeader() {
+    let headerContainer = document.createElement("div");
+    headerContainer.id = "headerContainer";
+    
+    //create form here
+    let headerTitle = document.createElement("div");
 
-function createForm() {
+    let cityName = document.createElement("div");
+    cityName.id = "cityName";
+    cityName.innerText = "City"
+
+    let dateContainer = document.createElement("div");
+    
+    let day = document.createElement("div");
+    day.id = "day";
+    day.innerText = "Thu";
+
+    let time = document.createElement("div");
+    time.id = "time";
+    time.innerText = "06:59:47";
+
+    dateContainer.appendChild(day);
+    dateContainer.appendChild(time);
+
+    let tempButton = document.createElement("button");
+    tempButton.innerText = "F/C";
+
+    headerTitle.appendChild(cityName);
+    headerTitle.appendChild(dateContainer);
+
+    headerContainer.appendChild(createForm());
+    headerContainer.appendChild(headerTitle);
+    headerContainer.appendChild(tempButton);
+    
+    document.getElementById("content").appendChild(headerContainer);
+}
+
+loadHeader();
+
+function createForm() {    
     let formArea = document.createElement("div");
     formArea.id = "formArea";
 
@@ -32,22 +69,21 @@ function createForm() {
     formInput.id = "formInput";
 
     let btn = document.createElement("button");
-    btn.innerHTML = "Search";
+    btn.innerText = "Search";
     btn.setAttribute("type", "submit");
     btn.onclick = function test(e) {
         e.preventDefault();
-        getCity();  
+        getWeather(getCity());  
     }
-
     formArea.append(formInput);
     formArea.append(btn);
 
-    document.getElementById("content").appendChild(formArea);
+    return formArea;
 }
 
 function getCity() {
     let city = formInput.value;
     console.log(city);
-}
 
-createForm();
+    return city
+}
