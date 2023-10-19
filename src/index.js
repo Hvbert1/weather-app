@@ -57,7 +57,37 @@ function loadHeader() {
     document.getElementById("content").appendChild(headerContainer);
 }
 
-loadHeader();
+function loadMain() {
+    let mainContainer = document.createElement("div");
+    mainContainer.id = "mainContainer";
+
+    let icon = document.createElement("div");
+    icon.innerText = "🌞";
+
+    let mainTemp = document.createElement("div");
+    mainTemp.id = "mainTemp";
+    mainTemp.innerText = "4°"
+
+    let secondaryTemp = document.createElement("div");
+    secondaryTemp.id = "secondaryTemp";
+
+    let minTemp = document.createElement("div");
+    minTemp.id = "minTemp";
+    minTemp.innerText = "Lowest: 4°"
+
+    let maxTemp = document.createElement("div");
+    maxTemp.id = "maxTemp";
+    maxTemp.innerText = "Highest: 6°"
+
+    secondaryTemp.appendChild(minTemp);
+    secondaryTemp.appendChild(maxTemp);
+
+    mainContainer.appendChild(icon);
+    mainContainer.appendChild(mainTemp);
+    mainContainer.appendChild(secondaryTemp);
+
+    document.getElementById("content").appendChild(mainContainer);
+}
 
 function createForm() {    
     let formArea = document.createElement("div");
@@ -87,3 +117,6 @@ function getCity() {
 
     return city
 }
+
+loadHeader();
+loadMain();
