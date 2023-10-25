@@ -15,9 +15,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 #secondaryTemp {
     display: flex;
     gap: 1rem;
+}
+
+#secondContainer {
+    width: 100%;
+}
+
+#infoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
