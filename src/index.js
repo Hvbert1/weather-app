@@ -26,13 +26,19 @@ async function getWeather(city) {
     document.getElementById("mainTemp").innerText = temp + "°";
 
     let feelsLike = weather.current.feelslike_c;
-    console.log(feelsLike);
+    document.getElementById("feelsLike").innerText = feelsLike + "°";
 
     let wind = weather.current.wind_kph;
-    console.log(wind);
+    document.getElementById("wind").innerText = wind + " kph";
 
     let humidity = weather.current.humidity;
-    console.log(humidity);
+    document.getElementById("humidity").innerText = humidity;
+
+    let pressure = weather.current.pressure_mb;
+    document.getElementById("pressure").innerText = pressure;
+
+    let uv = weather.current.uv;
+    document.getElementById("uv").innerText = uv;
 }
 
 function loadHeader() {
@@ -112,9 +118,21 @@ function loadSecondContent() {
     let secondContainer = document.createElement("div");
     secondContainer.id = "secondContainer";
 
-    
     let infoContainer = document.createElement("div");
+    infoContainer.id = "infoContainer";
 
+    const gridIds = ["feelsLike", "wind", "humidity", "pressure", "uv"];
+
+    for (let i = 0; i < 5; i++ ) {
+        const gridCell = document.createElement("div");
+        gridCell.id = gridIds[i]; // Assign the custom ID
+        gridCell.classList.add('grid-item');
+
+        infoContainer.appendChild(gridCell);
+    }
+
+    secondContainer.appendChild(infoContainer);
+    document.getElementById("content").appendChild(secondContainer);
 }
 
 function createForm() {    
@@ -148,3 +166,4 @@ function getCity() {
 
 loadHeader();
 loadMain();
+loadSecondContent();
