@@ -6,7 +6,25 @@ async function getWeather(city) {
     });
 
     let weather = await response.json();
-    
+
+    let place = weather.location.name;
+    document.getElementById("cityName").innerText = place;
+
+    let localTime = weather.location.localtime;
+    let day = localTime.substr(0, 10);
+    const dateObject = new Date(day);
+    const dayOfWeek = dateObject.toLocaleDateString('en-US', { weekday: 'long' });
+    document.getElementById("day").innerText = dayOfWeek;
+
+    let time = localTime.substr(11, 16);
+    document.getElementById("time").innerText = time;
+
+    let condition = weather.current.condition.text;
+    document.getElementById("tempInfo").innerText = condition;
+
+    let temp = weather.current.temp_c;
+    document.getElementById("mainTemp").innerText = temp + "°";
+
     let feelsLike = weather.current.feelslike_c;
     console.log(feelsLike);
 
@@ -15,9 +33,6 @@ async function getWeather(city) {
 
     let humidity = weather.current.humidity;
     console.log(humidity);
-
-    let time = weather.location.localtime;
-    console.log(time);
 }
 
 function loadHeader() {
@@ -29,17 +44,17 @@ function loadHeader() {
 
     let cityName = document.createElement("div");
     cityName.id = "cityName";
-    cityName.innerText = "City"
+    cityName.innerText = "City";
 
     let dateContainer = document.createElement("div");
     
     let day = document.createElement("div");
     day.id = "day";
-    day.innerText = "Thu";
+    day.innerText = "";
 
     let time = document.createElement("div");
     time.id = "time";
-    time.innerText = "06:59:47";
+    time.innerText = "";
 
     dateContainer.appendChild(day);
     dateContainer.appendChild(time);
@@ -64,9 +79,12 @@ function loadMain() {
     let icon = document.createElement("div");
     icon.innerText = "🌞";
 
+    let tempInfo = document.createElement("div");
+    tempInfo.id = "tempInfo";
+
     let mainTemp = document.createElement("div");
     mainTemp.id = "mainTemp";
-    mainTemp.innerText = "4°"
+    mainTemp.innerText = "";
 
     let secondaryTemp = document.createElement("div");
     secondaryTemp.id = "secondaryTemp";
@@ -83,10 +101,20 @@ function loadMain() {
     secondaryTemp.appendChild(maxTemp);
 
     mainContainer.appendChild(icon);
+    mainContainer.appendChild(tempInfo);
     mainContainer.appendChild(mainTemp);
     mainContainer.appendChild(secondaryTemp);
 
     document.getElementById("content").appendChild(mainContainer);
+}
+
+function loadSecondContent() {
+    let secondContainer = document.createElement("div");
+    secondContainer.id = "secondContainer";
+
+    
+    let infoContainer = document.createElement("div");
+
 }
 
 function createForm() {    
