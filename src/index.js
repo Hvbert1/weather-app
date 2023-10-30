@@ -124,16 +124,22 @@ function loadSecondContent() {
     let infoContainer = document.createElement("div");
     infoContainer.id = "infoContainer";
 
+    const cardIcons = ["device_thermostat", "air", "invert_colors", "compress", "brightness_6"];
     const cardTitles = ["Feels Like", "Wind", "Humidity", "Pressure", "UV"];
     const cardIds = ["feelsLike", "wind", "humidity", "pressure", "uv"];
 
     for (let i = 0; i < 5; i++ ) {
         const card = document.createElement("div");
+        const cardIcon = document.createElement("i");
         const cardTitle = document.createElement("p");;
         const cardInfo = document.createElement("p");;
+
+        cardIcon.className = "material-icons";
+        cardIcon.innerText = cardIcons[i];
         cardTitle.innerText = cardTitles[i]; // Assign the custom ID
         cardInfo.id = cardIds[i]; // Assign the custom ID
 
+        card.append(cardIcon);
         card.appendChild(cardTitle);
         card.appendChild(cardInfo);
 
