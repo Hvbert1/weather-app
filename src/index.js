@@ -10,6 +10,8 @@ async function getWeather(city) {
     let place = weather.location.name;
     document.getElementById("cityName").innerText = place;
 
+    document.getElementById("tempIcon").src = "https://" + weather.current.condition.icon;
+
     let localTime = weather.location.localtime;
     let day = localTime.substr(0, 10);
     const dateObject = new Date(day);
@@ -32,10 +34,10 @@ async function getWeather(city) {
     document.getElementById("wind").innerText = wind + " kph";
 
     let humidity = weather.current.humidity;
-    document.getElementById("humidity").innerText = humidity;
+    document.getElementById("humidity").innerText = humidity + "%";
 
     let pressure = weather.current.pressure_mb;
-    document.getElementById("pressure").innerText = pressure;
+    document.getElementById("pressure").innerText = pressure + "hPa";
 
     let uv = weather.current.uv;
     document.getElementById("uv").innerText = uv;
@@ -82,8 +84,9 @@ function loadMain() {
     let mainContainer = document.createElement("div");
     mainContainer.id = "mainContainer";
 
-    let icon = document.createElement("div");
-    icon.innerText = "🌞";
+    let icon = document.createElement("img");
+    icon.id = "tempIcon";
+    icon.alt = "Weather Icon"; // Set the alt text for accessibility
 
     let tempInfo = document.createElement("div");
     tempInfo.id = "tempInfo";
@@ -121,14 +124,20 @@ function loadSecondContent() {
     let infoContainer = document.createElement("div");
     infoContainer.id = "infoContainer";
 
-    const gridIds = ["feelsLike", "wind", "humidity", "pressure", "uv"];
+    const cardTitles = ["Feels Like", "Wind", "Humidity", "Pressure", "UV"];
+    const cardIds = ["feelsLike", "wind", "humidity", "pressure", "uv"];
 
     for (let i = 0; i < 5; i++ ) {
-        const gridCell = document.createElement("div");
-        gridCell.id = gridIds[i]; // Assign the custom ID
-        gridCell.classList.add('grid-item');
+        const card = document.createElement("div");
+        const cardTitle = document.createElement("p");;
+        const cardInfo = document.createElement("p");;
+        cardTitle.innerText = cardTitles[i]; // Assign the custom ID
+        cardInfo.id = cardIds[i]; // Assign the custom ID
 
-        infoContainer.appendChild(gridCell);
+        card.appendChild(cardTitle);
+        card.appendChild(cardInfo);
+
+        infoContainer.appendChild(card);
     }
 
     secondContainer.appendChild(infoContainer);
