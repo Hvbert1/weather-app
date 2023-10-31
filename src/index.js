@@ -47,14 +47,15 @@ function loadHeader() {
     let headerContainer = document.createElement("div");
     headerContainer.id = "headerContainer";
     
-    //create form here
-    let headerTitle = document.createElement("div");
+    let headerMid = document.createElement("div");
+    headerMid.id = "headerMid";
 
     let cityName = document.createElement("div");
     cityName.id = "cityName";
     cityName.innerText = "City";
 
     let dateContainer = document.createElement("div");
+    dateContainer.id = "dateContainer";
     
     let day = document.createElement("div");
     day.id = "day";
@@ -69,12 +70,13 @@ function loadHeader() {
 
     let tempButton = document.createElement("button");
     tempButton.innerText = "F/C";
+    tempButton.id = "tempButton";
 
-    headerTitle.appendChild(cityName);
-    headerTitle.appendChild(dateContainer);
+    headerMid.appendChild(cityName);
+    headerMid.appendChild(dateContainer);
 
     headerContainer.appendChild(createForm());
-    headerContainer.appendChild(headerTitle);
+    headerContainer.appendChild(headerMid);
     headerContainer.appendChild(tempButton);
     
     document.getElementById("content").appendChild(headerContainer);
