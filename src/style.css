@@ -32,6 +32,8 @@
 
 #headerContainer button:hover {
     cursor: pointer;
+    background-color: white;
+    color: black;
 }
 
 #headerContainer #formArea {

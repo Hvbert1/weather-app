@@ -1,6 +1,6 @@
 import './style.css';
 
-async function getWeather(city) {
+async function getWeather(city, isCelsius = true) {
     let response = await fetch('https://api.weatherapi.com/v1/current.json?key=3a42f2ba01104ec98ac20757231610&q=' + city, {
         mode: 'cors'
     });
@@ -24,10 +24,10 @@ async function getWeather(city) {
     let condition = weather.current.condition.text;
     document.getElementById("tempInfo").innerText = condition;
 
-    let temp = weather.current.temp_c;
+    let temp = isCelsius ? weather.current.temp_c : weather.current.temp_f;
     document.getElementById("mainTemp").innerText = temp + "°";
 
-    let feelsLike = weather.current.feelslike_c;
+    let feelsLike = isCelsius ? weather.current.feelslike_c : weather.current.feelslike_f;
     document.getElementById("feelsLike").innerText = feelsLike + "°";
 
     let wind = weather.current.wind_kph;
@@ -72,6 +72,19 @@ function loadHeader() {
     tempButton.innerText = "F/C";
     tempButton.id = "tempButton";
 
+    let isCelsius = true;
+
+    tempButton.onclick = function () {
+        isCelsius = !isCelsius;
+        if (isCelsius) {
+            tempButton.innerHTML = '<b>C</b> / F'; // Make "C" bold
+        } else {
+            tempButton.innerHTML = 'C / <b>F</b>'; // Make "F" bold
+        }
+
+        getWeather(getCity(), isCelsius);
+    };
+
     headerMid.appendChild(cityName);
     headerMid.appendChild(dateContainer);
 
@@ -88,7 +101,7 @@ function loadMain() {
 
     let icon = document.createElement("img");
     icon.id = "tempIcon";
-    icon.alt = "Weather Icon"; // Set the alt text for accessibility
+    icon.alt = "Weather Icon";
 
     let tempInfo = document.createElement("div");
     tempInfo.id = "tempInfo";
@@ -139,8 +152,8 @@ function loadSecondContent() {
         card.className = "cards";
         cardIcon.className = "material-icons";
         cardIcon.innerText = cardIcons[i];
-        cardTitle.innerText = cardTitles[i]; // Assign the custom ID
-        cardInfo.id = cardIds[i]; // Assign the custom ID
+        cardTitle.innerText = cardTitles[i];
+        cardInfo.id = cardIds[i]; 
 
         card.append(cardIcon);
         card.appendChild(cardTitle);
@@ -177,7 +190,6 @@ function createForm() {
 
 function getCity() {
     let city = formInput.value;
-    console.log(city);
 
     return city
 }
@@ -185,3 +197,4 @@ function getCity() {
 loadHeader();
 loadMain();
 loadSecondContent();
+getWeather("Sydney", true);
