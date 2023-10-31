@@ -102,11 +102,11 @@ function loadMain() {
 
     let minTemp = document.createElement("div");
     minTemp.id = "minTemp";
-    minTemp.innerText = "Lowest: 4°"
+    minTemp.innerText = "Lowest: "
 
     let maxTemp = document.createElement("div");
     maxTemp.id = "maxTemp";
-    maxTemp.innerText = "Highest: 6°"
+    maxTemp.innerText = "Highest: "
 
     secondaryTemp.appendChild(minTemp);
     secondaryTemp.appendChild(maxTemp);
@@ -136,6 +136,7 @@ function loadSecondContent() {
         const cardTitle = document.createElement("p");;
         const cardInfo = document.createElement("p");;
 
+        card.className = "cards";
         cardIcon.className = "material-icons";
         cardIcon.innerText = cardIcons[i];
         cardTitle.innerText = cardTitles[i]; // Assign the custom ID

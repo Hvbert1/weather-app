@@ -21,22 +21,34 @@
     align-items: center;
 }
 
+#headerContainer button {
+    border: 2.5px solid white;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(255, 0, 0, 0);
+    padding: 7px 26px;
+    text-align: center;
+}
+
+#headerContainer button:hover {
+    cursor: pointer;
+}
+
 #headerContainer #formArea {
     display: flex;
     align-items: center;
 }
 
-#headerContainer input[type=text] {
-    border: 2px solid white;
-    padding: 7px 23px;
+#headerContainer #formArea button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-#headerContainer button {
-    border: 2px solid white;
-    color: white;
-    background-color: rgba(255, 0, 0, 0);
-    padding: 7px 26px;
-    text-align: center;
+#headerContainer input[type=text] {
+    border: 2.5px solid white;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 7px 23px;
 }
 
 #headerContainer #headerMid {
@@ -45,11 +57,11 @@
 
 #headerContainer #cityName {
     font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 #headerContainer #dateContainer {
     font-size: 1.45rem;
-    margin-top: 10px;
 }
 
 #headerContainer #tempButton {
@@ -63,20 +75,41 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 10px;
+}
+
+#mainContainer img {
+    max-width: 250px;
+    max-height: 250px;
 }
 
 #secondaryTemp {
     display: flex;
     gap: 1rem;
-}
-
-#secondContainer {
-    width: 100%;
+    font-size: 1rem;
 }
 
 #infoContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    font-size: 1.2rem;
 }
+
+#infoContainer .cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgba(64, 64, 64, 0.2);
+    border-radius: 5px;
+    height: 150px;
+    width: 150px;
+}
+
+#infoContainer .cards .material-icons {
+    font-size: 2.5rem;
+}
+
 
